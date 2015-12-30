@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" media="screen" charset="utf-8">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <h1>Welcome to the chatroom</h1>
+          <p>
+            This is an example application built using socket.io
+          </p>
+        </div>
+      </div>
+
+      <div id="messages" class="row"></div>
+
+      <div class="row">
+        <form action="">
+          <div class="col-xs-8">
+            <input id="m" autocomplete="off" class="form-control" autofocus="true"/>
+          </div>
+          <div class="col-xs-4">
+            <button class="btn btn-success form-control">Send</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+      var socket = io();
+      $('form').submit(function(){
+        socket.emit('message', $('#m').val());
+        $('#m').val('');
+        return false;
+      });
+      socket.on('message', function(msg){
+        $('#messages').append($('<div class="alert alert-info" role="alert" />').html("<strong>" + new Date().toUTCString() + "</strong> :  " + msg));
+      });
+    </script>
+  </body>
+</html>
