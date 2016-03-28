@@ -1,4 +1,4 @@
-Node socket chat
+# Node Socket Chat [![Build Status](https://david-dm.org/FintanK/node-socket-chat.svg)](https://david-dm.org/FintanK/node-socket-chat.svg)  
 
 A realtime web chat app.
 
